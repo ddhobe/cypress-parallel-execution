@@ -17,10 +17,9 @@ jobs:
       matrix:
         browser: [chrome]
         spec:
-          - login.feature
           - login2.feature
           - newtours.feature
-          - flipkart.feature
+          - amazon.feature
 
     steps:
 
