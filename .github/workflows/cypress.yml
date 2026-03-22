@@ -49,5 +49,5 @@ jobs:
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
+          name: allure-report-${{ matrix.browser }}-${{ matrix.spec }}
           path: allure-report
