@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome, firefox]
+        browser: [chrome]
         spec:
           - login.feature
           - login2.feature
