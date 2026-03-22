@@ -37,8 +37,9 @@ jobs:
       - name: Run Cypress Tests
         run: |
           npx cypress run \
-         # --browser ${{ matrix.browser }} \
           --spec="cypress/e2e/${{ matrix.spec }}"
+         # --browser ${{ matrix.browser }} \
+          
 
       - name: Generate Allure Report
         run: |
