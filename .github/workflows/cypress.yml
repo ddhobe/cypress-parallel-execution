@@ -18,10 +18,10 @@ jobs:
         #   - "@regression1"
 
         spec:
-         -login.feature
-         -login2.feature
-         -newtours.feature
-         -flipkart.feature
+         - login.feature
+         - login2.feature
+         - newtours.feature
+         - flipkart.feature
 
     steps:
 
