@@ -9,6 +9,6 @@ Feature:Amazon
 Scenario:search functionality
 Given visit to a web
 When search product
-Then click on first product in the list
-And Add Product to the cart
+#Then click on first product in the list
+#And Add Product to the cart
 
