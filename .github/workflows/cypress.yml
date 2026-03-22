@@ -1,11 +1,11 @@
-name: Cypress Pipeline(parallel execution)
+name: Cypress Pipeline (parallel execution)
 
 on:
   push:
     branches: [ main ]
 
-  env:
-    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # ✅ Correct placement
 
 jobs:
   cypress-run:
@@ -15,16 +15,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome,firefox]
-        # tag:
-        #   - "@smoke"
-        #   - "@regression1"
-
+        browser: [chrome, firefox]
         spec:
-         - login.feature
-         - login2.feature
-         - newtours.feature
-         - flipkart.feature
+          - login.feature
+          - login2.feature
+          - newtours.feature
+          - flipkart.feature
 
     steps:
 
@@ -43,7 +39,7 @@ jobs:
         run: |
           npx cypress run \
           --browser ${{ matrix.browser }} \
-          --spec="${{ matrix.spec }}"
+          --spec="cypress/e2e/${{ matrix.spec }}"
 
       - name: Generate Allure Report
         run: |
