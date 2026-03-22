@@ -1,0 +1,54 @@
+name: Cypress Pipeline(parallel execution)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  cypress-run:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome,firefox]
+        # tag:
+        #   - "@smoke"
+        #   - "@regression1"
+
+        spec:
+         -login.feature
+         -login2.feature
+         -newtours.feature
+         -flipkart.feature
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        run: |
+          npx cypress run \
+          --browser ${{ matrix.browser }} \
+          --spec="${{ matrix.spec }}"
+
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
